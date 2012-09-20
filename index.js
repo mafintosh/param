@@ -4,7 +4,7 @@ var path = require('path');
 var file = function() {
 	var index = process.argv.indexOf('--config');
 	if (index > -1) return require(fs.realpathSync(process.argv[index+1]));
-	var env = process.APP_ENV || process.NODE_ENV;
+	var env = process.env.APP_ENV || process.env.NODE_ENV;
 	var base = process.cwd();
 
 	while (true) {
