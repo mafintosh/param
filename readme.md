@@ -30,7 +30,7 @@ If `NODE_ENV=development` it will look for a config file called `development.jso
 It will start looking for the config file in `.` and `./config`. If it doesn't exist it will try in `..` and `../config` until it reaches `/`.
 
 ``` js
-// development.json
+// config.json
 {
 	"app": {
 		"port": 8888
@@ -38,7 +38,7 @@ It will start looking for the config file in `.` and `./config`. If it doesn't e
 } 
 ```
 
-Running the example again with the above file saved as `./development.json`
+Running the example again with the above file saved as `./config.json`
 
 	node example.js # prints 8888
 
