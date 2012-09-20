@@ -23,7 +23,7 @@ otherwise param will look for a configuration file based on `--config [filename]
 
 if `NODE_ENV=development` it will look for a config file called `development.json` or `development.js` and so on.
 
-it will start looking in `.` and `./config` and if not present try in `..` and `../config` until it reaches `/`.
+it will start looking for the config file in `.` and `./config`. if it doesn't exist it will try in `..` and `../config` until it reaches `/`.
 
 	// development.json
 	{
@@ -32,7 +32,6 @@ it will start looking in `.` and `./config` and if not present try in `..` and `
 		}
 	} 
 
-if we run the example again with the above config file present we get
 
 	node example.js # prints 8888
 
