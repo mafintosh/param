@@ -32,6 +32,7 @@ it will start looking for the config file in `.` and `./config`. if it doesn't e
 		}
 	} 
 
+running the example again with the above file saved as `development.json`
 
 	node example.js # prints 8888
 
