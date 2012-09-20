@@ -1,11 +1,13 @@
 # param
 
-a tiny module to read config parameters for your node application.  
-it's avaiable through npm:
+A tiny module to read config parameters for your node application.  
+It's avaiable through npm:
 
 	npm install param
 
-param exposes a single function that finds a config parameter
+## what?
+
+Param exposes a single function that finds a config parameter
 
 	// example.js
 	var param = require('param');
@@ -13,17 +15,17 @@ param exposes a single function that finds a config parameter
 
 	console.log(port);
 
-the above example tells param to find the parameter `app.port`.
-it does so by first looking at the command line arguments
+The above example tells param to find the parameter `app.port`.
+It does so by first looking at the command line arguments
 
 	node example.js --app.port 8080 # prints 8080
 
-if present param will simply return that value.  
-otherwise param will look for a configuration file based on `--config [filename]` or your `NODE_ENV` env var.
+If present param will simply return that value.  
+Otherwise param will look for a configuration file based on `--config [filename]` or your `NODE_ENV` env var.
 
-if `NODE_ENV=development` it will look for a config file called `development.json` or `development.js` and so on.
+If `NODE_ENV=development` it will look for a config file called `development.json` or `development.js` and so on.
 
-it will start looking for the config file in `.` and `./config`. if it doesn't exist it will try in `..` and `../config` until it reaches `/`.
+It will start looking for the config file in `.` and `./config`. If it doesn't exist it will try in `..` and `../config` until it reaches `/`.
 
 	// development.json
 	{
@@ -32,8 +34,12 @@ it will start looking for the config file in `.` and `./config`. if it doesn't e
 		}
 	} 
 
-running the example again with the above file saved as `./development.json`
+Running the example again with the above file saved as `./development.json`
 
 	node example.js # prints 8888
 
-happy configuring! (license is mit)
+Happy configuring!
+
+## License
+
+MIT
