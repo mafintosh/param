@@ -32,8 +32,8 @@ It will start looking for the config file in `.` and `./config`. If it doesn't e
 ``` js
 // development.json
 {
-	app: {
-		port: 8888
+	"app": {
+		"port": 8888
 	}
 } 
 ```
