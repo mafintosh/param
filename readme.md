@@ -18,8 +18,8 @@ it does so by first looking at the command line arguments
 
 	node example.js --app.port 8080 # prints 8080
 
-if present there param will simply return that value.
-otherwise it looks for a configuration file based on `--config [filename]` command line parameter or your `NODE_ENV` env var.
+if present param will simply return that value.  
+otherwise param will look for a configuration file based on `--config [filename]` or your `NODE_ENV` env var.
 
 if `NODE_ENV=development` it will look for a config file called `development.json` or `development.js` and so on.
 it will start looking in `.` and `./config` and if not present try in `..` and `../config` until it reaches `/`.
