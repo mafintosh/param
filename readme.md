@@ -23,9 +23,9 @@ It does so by first looking at the command line arguments
 	node example.js --app.port 8080 # prints 8080
 
 If present param will simply return that value.  
-Otherwise param will look for a configuration file based on `--config [filename]` or your `NODE_ENV` env var.
+Otherwise param will look for a configuration file called `config.json` or specified by `--config [filename]` or your `NODE_ENV` env var.
 
-If `NODE_ENV=development` it will look for a config file called `development.json` or `development.js` and so on.
+If `NODE_ENV=development` it will look for a config file called `development.json` and similar.
 
 It will start looking for the config file in `.` and `./config`. If it doesn't exist it will try in `..` and `../config` until it reaches `/`.
 

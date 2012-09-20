@@ -4,16 +4,14 @@ var path = require('path');
 var file = function() {
 	var index = process.argv.indexOf('--config');
 	if (index > -1) return require(fs.realpathSync(process.argv[index+1]));
-	var type = process.APP_ENV || process.NODE_ENV || 'development';
+	var env = process.APP_ENV || process.NODE_ENV;
 	var base = process.cwd();
 
 	while (true) {
 		var file = [
-			path.join(base,'config.json'),
-			path.join(base,type+'.json'),
-			path.join(base,'config',type+'.json'),
-			path.join(base,type+'.js'),
-			path.join(base,'config',type+'.js')
+			path.join(base,(env || 'config')+'.json'),
+			path.join(base,(env || 'development')+'.json'),
+			path.join(base,'config',(env || 'development')+'.json')
 		].filter(fs.existsSync || path.existsSync)[0];
 
 		if (file) return require(file);

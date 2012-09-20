@@ -1,6 +1,6 @@
 {
  "name":"param",
- "version":"0.1.0",
+ "version":"0.1.1",
  "repository": "git://github.com/mafintosh/param",
  "description":"param is a tiny module to read config parameters",
  "keywords": ["config", "command-line", "parameters"],
