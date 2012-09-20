@@ -5,7 +5,7 @@ it's avaiable through npm:
 
 	npm install param
 
-param exposes a function that finds a config parameter
+param exposes a single function that finds a config parameter
 
 	// example.js
 	var param = require('param');
@@ -32,7 +32,7 @@ it will start looking for the config file in `.` and `./config`. if it doesn't e
 		}
 	} 
 
-running the example again with the above file saved as `development.json`
+running the example again with the above file saved as `./development.json`
 
 	node example.js # prints 8888
 
