@@ -22,8 +22,8 @@ if present param will simply return that value.
 otherwise param will look for a configuration file based on `--config [filename]` or your `NODE_ENV` env var.
 
 if `NODE_ENV=development` it will look for a config file called `development.json` or `development.js` and so on.
+
 it will start looking in `.` and `./config` and if not present try in `..` and `../config` until it reaches `/`.
-if `NODE_ENV` isn't specified it will assume `NODE_ENV=development`.
 
 	// development.json
 	{
