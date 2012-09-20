@@ -9,11 +9,13 @@ It's avaiable through npm:
 
 Param exposes a single function that finds a config parameter
 
-	// example.js
-	var param = require('param');
-	var port = param('app.port');
+``` js
+// example.js
+var param = require('param');
+var port = param('app.port');
 
-	console.log(port);
+console.log(port);
+```
 
 The above example tells param to find the parameter `app.port`.
 It does so by first looking at the command line arguments
@@ -27,12 +29,14 @@ If `NODE_ENV=development` it will look for a config file called `development.jso
 
 It will start looking for the config file in `.` and `./config`. If it doesn't exist it will try in `..` and `../config` until it reaches `/`.
 
-	// development.json
-	{
-		app: {
-			port: 8888
-		}
-	} 
+``` js
+// development.json
+{
+	app: {
+		port: 8888
+	}
+} 
+```
 
 Running the example again with the above file saved as `./development.json`
 
