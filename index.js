@@ -9,6 +9,7 @@ var file = function() {
 
 	while (true) {
 		var file = [
+			path.join(base,'config.json'),
 			path.join(base,type+'.json'),
 			path.join(base,'config',type+'.json'),
 			path.join(base,type+'.js'),
