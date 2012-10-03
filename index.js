@@ -33,7 +33,7 @@ var set = function(keys, value) {
 	var obj = keys.reduce(function(obj, key) {
 		return obj[key] = obj[key] || {};
 	}, file);
-	obj[last] = value;
+	return obj[last] = value;
 };
 process.argv.filter(function(arg) {
 	return arg[0] === '-';
@@ -42,4 +42,6 @@ process.argv.filter(function(arg) {
 	set(key.replace(/^\-+/g,''), parse(!value || value[0] === '-' || value));
 });
 
-module.exports = get;
+module.exports = function(key, value) {
+	return value ? set(key, value) : get(key);
+};
