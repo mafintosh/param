@@ -1,23 +1,13 @@
 var fs = require('fs');
 var path = require('path');
+var findModule = require('find-module');
 
 var file = function() {
 	var index = process.argv.indexOf('--config');
-	if (index > -1) return require(fs.realpathSync(process.argv[index+1]));
-	var env = process.env.APP_ENV || process.env.NODE_ENV;
-	var base = process.cwd();
+	var env = process.env.NODE_ENV || 'development';
+	var filename = index === -1 ? findModule(env, {modules:'config'}) : fs.realpathSync(process.argv[index+1]);
 
-	while (true) {
-		var file = [
-			path.join(base,(env || 'config')+'.json'),
-			path.join(base,(env || 'development')+'.json'),
-			path.join(base,'config',(env || 'development')+'.json')
-		].filter(fs.existsSync || path.existsSync)[0];
-
-		if (file) return require(file);
-		if (base === path.join(base,'..')) return {};
-		base = path.join(base,'..');
-	}
+	return require(filename);
 }();
 var parse = function(value) {
 	return typeof value === 'string' && Number(value).toString() === value ? Number(value) : value;
@@ -35,6 +25,7 @@ var set = function(keys, value) {
 	}, file);
 	return obj[last] = value;
 };
+
 process.argv.filter(function(arg) {
 	return arg[0] === '-';
 }).forEach(function(key) {

@@ -1,6 +1,6 @@
 # param
 
-A tiny module to read config parameters for your node application.  
+A tiny module to read config parameters for your node application.
 It's avaiable through npm:
 
 	npm install param
@@ -22,23 +22,22 @@ It does so by first looking at the command line arguments
 
 	node example.js --app.port 8080 # prints 8080
 
-If present param will simply return that value.  
-Otherwise param will look for a configuration file called `config.json` or specified by `--config [filename]` or your `NODE_ENV` env var.
+If present param will simply return that value.
+Otherwise param will look for a configuration file specified by `--config [filename]` or your `NODE_ENV` env var.
 
-If `NODE_ENV=development` it will look for a config file called `development.json` and similar.
+If `NODE_ENV=development` it will look for a config file called `config/development.json` or `config/development.js`.
 
-It will start looking for the config file in `.` and `./config`. If it doesn't exist it will try in `..` and `../config` until it reaches `/`.
+It will start looking for the config file in `.` If it doesn't exist it will try in `..` until it reaches `/`.
 
 ``` js
-// config.json
 {
 	"app": {
 		"port": 8888
 	}
-} 
+}
 ```
 
-Running the example again with the above file saved as `./config.json`
+Running the example again with the above file saved as `config/development.json`
 
 	node example.js # prints 8888
 
