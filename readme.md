@@ -24,9 +24,7 @@ It does so by first looking at the command line arguments
 
 If present param will simply return that value.
 Otherwise param will look for a configuration file specified by `--config [filename]` or your `NODE_ENV` env var.
-
 If `NODE_ENV=development` it will look for a config file called `config/development.json` or `config/development.js`.
-
 It will start looking for the config file in `.` If it doesn't exist it will try in `..` until it reaches `/`.
 
 ``` js
