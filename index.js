@@ -15,14 +15,17 @@ var file = function() {
 
 	return require(filename);
 }();
+
 var parse = function(value) {
 	return typeof value === 'string' && Number(value).toString() === value ? Number(value) : value;
 };
+
 var get = function(keys) {
 	return !keys ? file : keys.split('.').reduce(function(value, key) {
 		return value && value[key];
 	}, file);
 };
+
 var set = function(keys, value) {
 	keys = keys.split('.');
 	var last = keys.pop();
@@ -38,6 +41,20 @@ process.argv.filter(function(arg) {
 	var value = process.argv[process.argv.indexOf(key)+1];
 	set(key.replace(/^\-+/g,''), parse(!value || value[0] === '-' || value));
 });
+
+var inline = function(str) {
+	return str.replace(/\{([^\}]+)\}/g, function(_, name) {
+		return inline(''+get(name));
+	});
+};
+
+var normalize = function(obj) {
+	Object.keys(obj).forEach(function(key) {
+		if (typeof obj[key] === 'string') obj[key] = inline(obj[key]);
+		if (typeof obj[key] === 'object' && obj[key]) normalize(obj[key]);
+	});
+};
+normalize(file);
 
 module.exports = function(key, value) {
 	return value ? set(key, value) : get(key);
