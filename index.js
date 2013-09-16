@@ -1,11 +1,17 @@
 var fs = require('fs');
 var path = require('path');
-var findModule = require('find-module');
+var resolve = require('resolve');
+
+var opts = {
+	basedir:process.cwd(),
+	extensions: ['.js', '.json'],
+	moduleDirectory:'config'
+};
 
 var file = function() {
 	var index = process.argv.indexOf('--config');
 	var env = process.env.NODE_ENV || 'development';
-	var filename = index === -1 ? findModule(env, {modules:'config'}) : fs.realpathSync(process.argv[index+1]);
+	var filename = index === -1 ? resolve.sync(env, opts) : fs.realpathSync(process.argv[index+1]);
 
 	return require(filename);
 }();
@@ -13,7 +19,7 @@ var parse = function(value) {
 	return typeof value === 'string' && Number(value).toString() === value ? Number(value) : value;
 };
 var get = function(keys) {
-	return !keys ? conf : keys.split('.').reduce(function(value, key) {
+	return !keys ? file : keys.split('.').reduce(function(value, key) {
 		return value && value[key];
 	}, file);
 };

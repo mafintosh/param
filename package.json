@@ -10,6 +10,7 @@
   ],
   "author": "Mathias Buus Madsen <mathiasbuus@gmail.com>",
   "dependencies": {
-    "find-module": "~0.2.0"
+    "find-module": "~0.2.0",
+    "resolve": "~0.5.0"
   }
 }
