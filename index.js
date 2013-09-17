@@ -8,13 +8,10 @@ var opts = {
 	moduleDirectory:'config'
 };
 
-var file = function() {
-	var index = process.argv.indexOf('--config');
-	var env = process.env.NODE_ENV || 'development';
-	var filename = index === -1 ? resolve.sync(env, opts) : fs.realpathSync(process.argv[index+1]);
-
-	return require(filename);
-}();
+var index = process.argv.indexOf('--config');
+var env = process.env.NODE_ENV || 'development';
+var filename = index === -1 ? resolve.sync(env, opts) : fs.realpathSync(process.argv[index+1]);
+var file = require(filename);
 
 var parse = function(value) {
 	return typeof value === 'string' && Number(value).toString() === value ? Number(value) : value;
@@ -43,9 +40,13 @@ process.argv.filter(function(arg) {
 });
 
 var inline = function(str) {
-	return str.replace(/\{([^\}]+)\}/g, function(_, name) {
-		return inline(''+get(name));
-	});
+	var replace = function(_, name) {
+		if (name[0] === '$') return process.env[name.slice(1)];
+		if (name[0] === '.') return fs.readFileSync(path.join(path.dirname(filename), name));
+		return typeof get(name) === 'string' ? inline(get(name)) : get(name);
+	};
+
+	return /^\{([^\}]+)\}$/.test(str) ? replace('', str.slice(1,-1)) : str.replace(/\{([^\}]+)\}/g, replace);
 };
 
 var normalize = function(obj) {
