@@ -39,10 +39,14 @@ process.argv.filter(function(arg) {
 	set(key.replace(/^\-+/g,''), parse(!value || value[0] === '-' || value));
 });
 
+var readSync = function(filename) {
+	return fs.existsSync(filename) ? fs.readFileSync(filename) : null;
+};
+
 var inline = function(str) {
 	var replace = function(_, name) {
-		if (name[0] === '$') return process.env[name.slice(1)];
-		if (name[0] === '.') return fs.readFileSync(path.join(path.dirname(filename), name));
+		if (name[0] === '$') return process.env[name.slice(1)] || '';
+		if (name[0] === '.') return readSync(path.join(path.dirname(filename), name));
 		return typeof get(name) === 'string' ? inline(get(name)) : get(name);
 	};
 
