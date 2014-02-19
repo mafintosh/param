@@ -61,6 +61,10 @@ var normalize = function(obj) {
 };
 normalize(file);
 
-module.exports = function(key, value) {
+var param = function(key, value) {
 	return value ? set(key, value) : get(key);
 };
+
+param.env = env;
+
+module.exports = param;
