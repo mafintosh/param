@@ -32,11 +32,13 @@ It will start looking for the config file in `.` If it doesn't exist it will try
 	"app": {
 		"port": 8888
 	},
+	"certificate": "{./certificate.file}",
 	"apikey": "{$API_KEY}"
 }
 ```
 
 The `{$API_KEY}` reads the `API_KEY` from the environment. Equivalent to `process.env.API_KEY`.
+The `{./certificate.file}` reads the file called `certificate.file`.
 
 Running the example again with the above file saved as `config/development.json`
 
