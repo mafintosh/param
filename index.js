@@ -3,9 +3,9 @@ var path = require('path');
 var resolve = require('resolve');
 
 var opts = {
-	basedir:process.cwd(),
+	basedir: require.main ? path.dirname(require.main.filename) : process.cwd(),
 	extensions: ['.js', '.json'],
-	moduleDirectory:'config'
+	moduleDirectory: 'config'
 };
 
 var index = process.argv.indexOf('--config');
