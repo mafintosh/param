@@ -3,7 +3,7 @@ var path = require('path');
 var resolve = require('resolve');
 
 var opts = {
-	basedir: require.main ? path.dirname(require.main.filename) : process.cwd(),
+	basedir: module.parent ? path.dirname(module.parent.filename) : process.cwd(),
 	extensions: ['.js', '.json'],
 	moduleDirectory: 'config'
 };
