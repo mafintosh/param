@@ -9,7 +9,8 @@ var opts = {
 };
 
 var index = process.argv.indexOf('--config');
-var env = process.env.NODE_ENV || 'development';
+var prod = process.argv.indexOf('--production');
+var env = prod > -1 ? 'production' : (process.env.NODE_ENV || 'development');
 var filename = index === -1 ? resolve.sync(env, opts) : fs.realpathSync(process.argv[index+1]);
 var file = require(filename);
 
